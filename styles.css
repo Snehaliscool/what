@@ -1,0 +1,218 @@
+:root{
+    --heart-color: #ff5873;
+    --hover-color: #C1275C;
+    --background-color: #f6d6cf;
+    --white: #fff;
+    --glass: rgba(255, 255, 255, 0.38);
+    --soft-shadow: rgba(0, 0, 0, 0.12);
+    --glow: rgba(255, 88, 115, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--heart-color);
+    background-image: 
+        radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 40%),
+        url('images/mini-hearth.png');
+    background-size: cover, 45%;
+    background-position: center;
+
+    /* SMOOTH BACKGROUND SHIFT */
+    transition: background-color 1.4s ease;
+}
+
+/* Typography */
+h1 {
+    font-family: 'Playball', cursive;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Card */
+.card {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.55),
+        var(--glass)
+    );
+    backdrop-filter: blur(14px);
+    border-radius: 24px;
+    padding: 30px 26px 34px;
+    text-align: center;
+    width: 330px;
+    box-shadow:
+        0 25px 50px var(--soft-shadow),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    animation: float 5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.96);
+    z-index: 3;
+}
+
+.card.show {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.6s ease;
+}
+
+/* Title */
+.title {
+    font-size: 26px;
+    margin: 4px 0 12px;
+}
+
+/* Cat */
+.heart {
+    width: 200px;
+    height: 200px;
+    margin: 12px auto 6px;
+}
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* Text */
+.text {
+    font-size: 15px;
+    margin-top: 18px;
+    min-height: 26px;
+    opacity: 0.85;
+    line-height: 1.4;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 22px;
+}
+
+.button {
+    background: linear-gradient(
+        180deg,
+        var(--heart-color),
+        var(--hover-color)
+    );
+    color: var(--white);
+    border: none;
+    padding: 11px 24px;
+    font-size: 15px;
+    margin: 8px 6px;
+    cursor: pointer;
+    border-radius: 30px;
+    width: 96px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 10px 20px var(--glow);
+}
+
+.button:hover {
+    transform: translateY(-4px) scale(1.03);
+}
+
+.button__negative {
+    background: transparent;
+    color: var(--heart-color);
+    border: 2px solid var(--heart-color);
+    box-shadow: none;
+}
+
+.button__error {
+    width: 100%;
+    display: none;
+    margin-top: 10px;
+}
+
+/* Intro */
+#intro {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #f6d6cf, #fbe9e6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#intro-text {
+    font-family: 'Playball', cursive;
+    font-size: 36px;
+    color: var(--heart-color);
+    opacity: 0;
+}
+
+/* Confetti */
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* BACKGROUND BLUR */
+#blur-layer {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 1.2s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* VIGNETTE */
+#vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent 55%, rgba(0,0,0,0.28) 100%);
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Warm shift */
+body.warm {
+    background-color: #f2bfc7;
+}
+
+/* Animations */
+.fade-in {
+    animation: fade 0.45s ease forwards;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Cursor hearts */
+.cursor-heart {
+    position: fixed;
+    font-size: 14px;
+    pointer-events: none;
+    animation: heartTrail 1.4s ease-out forwards;
+    z-index: 4;
+}
+
+@keyframes heartTrail {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(-30px) scale(0.6); }
+}
